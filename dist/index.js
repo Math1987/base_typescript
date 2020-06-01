@@ -10,15 +10,13 @@ const app = express_1.default();
 app.set("port", PORT);
 const http = require("http").Server(app);
 socket_1.SocketHandler.init(http);
-app.get('/', function (req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.send('typescript base with express and socket.io');
-});
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
     next();
+});
+app.get('/', function (req, res) {
+    res.send('typescript base with express and socket.io');
 });
 const server = http.listen(PORT, function () {
     console.log("listening on : http://localhost:" + PORT);

@@ -8,20 +8,21 @@ const http = require("http").Server(app);
 
 SocketHandler.init(http);
 
-
-app.get('/', function (req: Request, res : Response) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.send('typescript base with express and socket.io');
-});
-
 app.use(function (req: Request, res : Response, next : NextFunction) {
 
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+
     next();
 
 });
+
+
+app.get('/', function (req: Request, res : Response) {
+    res.send('typescript base with express and socket.io');
+});
+
+
 
 
 const server = http.listen(PORT, function () {
